@@ -32,7 +32,8 @@ vireplace='%F{#f9e2af}%B%S R %s%b%f'
 export VI_MODE="$viinsert"
 
 local _vi_mode() {
-    # Source: https://www.reddit.com/r/zsh/comments/krwm0t/im_looking_for_a_way_to_display_vi_visual_and/
+    # Source:
+    # https://www.reddit.com/r/zsh/comments/krwm0t/im_looking_for_a_way_to_display_vi_visual_and/
     #
     # INFO: Uncomment for debug info
     #zle -M "$KEYMAP : $ZLE_STATE = $VI_MODE"
@@ -58,12 +59,13 @@ local _vi_mode() {
             _beam_cursor
             ;;
     esac
-    zle reset-prompt
 
+    # reset prompt so that updates are immediately available
+    zle reset-prompt
 }
 
 local _line_init() {
-    # start in viins
+    # start new lines in viins
     zle -K viins
 }
 
@@ -78,4 +80,6 @@ zle -N zle-line-init _line_init
 
 # PROMPT='${VI_MODE} -> '
 
-
+###
+# All of the above is run before compinit, not sure if it would matter if it was run after
+#
